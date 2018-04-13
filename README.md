@@ -67,7 +67,7 @@ Please explore the code to see existing probes and actions.
 
 ## Configuration
 
-### Project and Cluster Information
+### Project and Cluster Information
 
 You can pass the context via the `configuration` section of your experiment:
 
