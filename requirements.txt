@@ -1,5 +1,5 @@
-chaostoolkit-lib>=0.15.0
-chaostoolkit-kubernetes
+chaostoolkit-lib>=0.16.0
+chaostoolkit-kubernetes>=0.15.0
 google-auth
 google-auth-httplib2
 google-api-python-client
