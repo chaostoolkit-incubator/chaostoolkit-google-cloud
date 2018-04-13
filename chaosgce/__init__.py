@@ -19,7 +19,7 @@ __all__ = ["__version__", "client", "with_context", "with_service",
 __version__ = '0.1.0'
 
 
-def with_service(service_name: str, version: str='v1') -> Callable:
+def with_service(service_name: str, version: str = 'v1') -> Callable:
     """
     Wrap a function to inject a client for the given `service_name` in the
     specified `version`. The `service` instance is injected as a new named
@@ -83,8 +83,8 @@ def wait_on_operation(operation_service: Any, project_id: str, zone: str,
         time.sleep(1)
 
 
-def client(service_name: str, version: str='v1',
-           secrets: Secrets=None) -> Resource:
+def client(service_name: str, version: str = 'v1',
+           secrets: Secrets = None) -> Resource:
     """
     Create a client for the given service. 
 

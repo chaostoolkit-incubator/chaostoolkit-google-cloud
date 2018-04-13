@@ -15,9 +15,9 @@ __all__ = ["create_new_nodepool", "delete_nodepool", "swap_nodepool"]
 @with_context
 def create_new_nodepool(service: Resource, body: Dict[str, Any],
                         project_id: str, cluster_name: str, zone: str,
-                        wait_until_complete: bool=True,
-                        configuration: Configuration=None,
-                        secrets: Secrets=None) -> Dict[str, Any]:
+                        wait_until_complete: bool = True,
+                        configuration: Configuration = None,
+                        secrets: Secrets = None) -> Dict[str, Any]:
     """
     Create a new node pool in the given cluster/zone of the provided project.
 
@@ -50,9 +50,9 @@ def create_new_nodepool(service: Resource, body: Dict[str, Any],
 @with_context
 def delete_nodepool(service: Resource, node_pool_id: str, project_id: str,
                     cluster_name: str, zone: str,
-                    wait_until_complete: bool=True,
-                    configuration: Configuration=None,
-                    secrets: Secrets=None) -> Dict[str, Any]:
+                    wait_until_complete: bool = True,
+                    configuration: Configuration = None,
+                    secrets: Secrets = None) -> Dict[str, Any]:
     """
     Delete node pool from the given cluster/zone of the provided project.
 
@@ -84,11 +84,11 @@ def delete_nodepool(service: Resource, node_pool_id: str, project_id: str,
 def swap_nodepool(service: Resource, old_node_pool_id: str,
                   new_nodepool_body: Dict[str, Any],
                   project_id: str, cluster_name: str, zone: str,
-                  wait_until_complete: bool=True,
-                  delete_old_node_pool: bool=False,
-                  drain_timeout: int=120,
-                  configuration: Configuration=None,
-                  secrets: Secrets=None) -> Dict[str, Any]:
+                  wait_until_complete: bool = True,
+                  delete_old_node_pool: bool = False,
+                  drain_timeout: int = 120,
+                  configuration: Configuration = None,
+                  secrets: Secrets = None) -> Dict[str, Any]:
     """
     Create a new nodepool, drain the old one so pods can be rescheduled on the
     new pool. Delete the old nodepool only `delete_old_node_pool` is set to
