@@ -23,8 +23,8 @@ __version__ = '0.2.0'
 
 
 def get_service(service_name: str, version: str = 'v1',
-                configuration: Configuration=None,
-                secrets: Secrets=None) -> Resource:
+                configuration: Configuration = None,
+                secrets: Secrets = None) -> Resource:
     """
     Create a client for the given service/version couple.
     """
@@ -32,7 +32,7 @@ def get_service(service_name: str, version: str = 'v1',
 
 
 def get_context(configuration: Configuration,
-                secrets: Secrets=None) -> GCEContext:
+                secrets: Secrets = None) -> GCEContext:
     """
     Collate all the GCE context information.
     """
