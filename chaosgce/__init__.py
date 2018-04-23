@@ -8,61 +8,40 @@ from typing import Any, Callable, Dict
 from chaoslib.discovery.discover import discover_actions, discover_probes, \
     initialize_discovery_result
 from chaoslib.exceptions import DiscoveryFailed, FailedActivity
-from chaoslib.types import Discovery, DiscoveredActivities, \
+from chaoslib.types import Configuration, Discovery, DiscoveredActivities, \
     DiscoveredSystemInfo, Secrets
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build, Resource
+import httplib2
 from logzero import logger
 
-__all__ = ["__version__", "client", "with_context", "with_service",
+from chaosgce.types import GCEContext
+
+__all__ = ["__version__", "client", "get_context", "get_service",
            "wait_on_operation"]
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 
-def with_service(service_name: str, version: str = 'v1') -> Callable:
+def get_service(service_name: str, version: str = 'v1',
+                configuration: Configuration=None,
+                secrets: Secrets=None) -> Resource:
     """
-    Wrap a function to inject a client for the given `service_name` in the
-    specified `version`. The `service` instance is injected as a new named
-    argument of the wrapped function.
+    Create a client for the given service/version couple.
     """
-    def outter(f) -> Callable:
-        @functools.wraps(f)
-        def inner(*args, **kwargs) -> Resource:
-            kwargs = kwargs or {}
-            secrets = kwargs.get("secrets", {})
-            service = client(service_name, version=version, secrets=secrets)
-            kwargs["service"] = service
-            return f(*args, **kwargs)
-        return inner
-    return outter
+    return client(service_name, version=version, secrets=secrets)
 
 
-def with_context(f) -> Callable:
+def get_context(configuration: Configuration,
+                secrets: Secrets=None) -> GCEContext:
     """
-    Wraps a function to collate the GCE context into function signature
-    as a named parameters.
+    Collate all the GCE context information.
     """
-    @functools.wraps(f)
-    def inner(*args, **kwargs) -> Resource:
-        kwargs = kwargs or {}
-        configuration = kwargs.get("configuration", {})
-
-        sig = inspect.signature(f)
-        params = [p for p in sig.parameters]
-        candidates = [
-            ("project_id", "gce_project_id"),
-            ("cluster_name", "gce_cluster_name"),
-            ("region", "gce_region"),
-            ("zone", "gce_zone")
-        ]
-
-        for local_name, conf_name in candidates:
-            # only set the v
-            if local_name in params:
-                kwargs[local_name] = kwargs.get(
-                    local_name, configuration.get(conf_name))
-        return f(*args, **kwargs)
-    return inner
+    return GCEContext(
+        project_id=configuration.get("gce_project_id"),
+        cluster_name=configuration.get("gce_cluster_name"),
+        region=configuration.get("gce_region"),
+        zone=configuration.get("gce_zone"),
+    )
 
 
 def wait_on_operation(operation_service: Any, project_id: str, zone: str,
@@ -137,12 +116,26 @@ def client(service_name: str, version: str = 'v1',
     credentials = None
     if service_account_file:
         service_account_file = os.path.expanduser(service_account_file)
-        if os.path.exists(service_account_file):
-            credentials = Credentials.from_service_account_file(
-                service_account_file)
+        if not os.path.exists(service_account_file):
+            raise FailedActivity(
+                "GCE account settings not found at {}".format(
+                    service_account_file))
+
+        logger.debug(
+            "Using GCE credentials from file: {}".format(service_account_file))
+        credentials = Credentials.from_service_account_file(
+            service_account_file)
     elif service_account_info and isinstance(service_account_info, dict):
+        logger.debug("Using GCE credentials embedded into secrets")
         credentials = Credentials.from_service_account_info(
             service_account_info)
+    else:
+        raise FailedActivity(
+            "missing GCE credentials settings in secrets of this activity")
+
+    if credentials is not None and credentials.expired:
+        logger.debug("GCE credentials need to be refreshed as they expired")
+        credentials.refresh(httplib2.Http())
 
     if not credentials:
         raise FailedActivity(
