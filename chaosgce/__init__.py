@@ -3,7 +3,7 @@ import functools
 import inspect
 import os.path
 import time
-from typing import Any, Callable, Dict
+from typing import Any, Callable, Dict, List
 
 from chaoslib.discovery.discover import discover_actions, discover_probes, \
     initialize_discovery_result
@@ -17,7 +17,7 @@ from logzero import logger
 
 from chaosgce.types import GCEContext
 
-__all__ = ["__version__", "client", "get_context", "get_service",
+__all__ = ["__version__", "client", "discover", "get_context", "get_service",
            "wait_on_operation"]
 __version__ = '0.2.0'
 
@@ -143,3 +143,27 @@ def client(service_name: str, version: str = 'v1',
             "Google Cloud Services")
 
     return build(service_name, version=version, credentials=credentials)
+
+
+def discover(discover_system: bool = True) -> Discovery:
+    """
+    Discover Google Cloud Engine capabilities offered by this extension.
+    """
+    logger.info("Discovering capabilities from chaostoolkit-google-cloud")
+
+    discovery = initialize_discovery_result(
+        "chaostoolkit-google-cloud", __version__, "gce")
+    discovery["activities"].extend(load_exported_activities())
+    return discovery
+
+
+###############################################################################
+# Private functions
+###############################################################################
+def load_exported_activities() -> List[DiscoveredActivities]:
+    """
+    Extract metadata from actions and probes exposed by this extension.
+    """
+    activities = []
+    activities.extend(discover_actions("chaosgce.nodepool.actions"))
+    return activities

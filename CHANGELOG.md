@@ -8,6 +8,10 @@
 
 [0.2.0]: https://github.com/chaostoolkit/chaostoolkit-google-cloud/tree/0.2.0
 
+### Added
+
+-   Added discovery support for `chaos discover`
+
 ### Changed
 
 -   Access token is refreshed when expired
