@@ -2,7 +2,15 @@
 
 ## [Unreleased][]
 
-[Unreleased]: https://github.com/chaostoolkit/chaostoolkit-google-cloud/compare/0.2.0...HEAD
+[Unreleased]: https://github.com/chaostoolkit/chaostoolkit-google-cloud/compare/0.2.1...HEAD
+
+## [0.2.1][] - 2018-04-24
+
+[0.2.1]: https://github.com/chaostoolkit/chaostoolkit-google-cloud/tree/0.2.1
+
+### Changed
+
+-   Fixed setup.py to read version from package
 
 ## [0.2.0][] - 2018-04-23
 

@@ -6,6 +6,10 @@ import io
 
 import setuptools
 
+sys.path.insert(0, ".")
+from chaosgce import __version__
+sys.path.remove(".")
+
 name = 'chaostoolkit-google-cloud'
 desc = 'Chaos Toolkit Extension for Google Cloud Engine'
 
@@ -47,7 +51,7 @@ with io.open('requirements.txt') as f:
 
 setup_params = dict(
     name=name,
-    version='0.1.0',
+    version=__version__,
     description=desc,
     long_description=long_desc,
     classifiers=classifiers,
