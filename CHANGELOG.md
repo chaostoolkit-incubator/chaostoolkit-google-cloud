@@ -2,11 +2,11 @@
 
 ## [Unreleased][]
 
-[Unreleased]: https://github.com/chaostoolkit/chaostoolkit-google-cloud/compare/0.2.2...HEAD
+[Unreleased]: https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud/compare/0.2.2...HEAD
 
 ## [0.2.2][] - 2018-05-14
 
-[0.2.2]: https://github.com/chaostoolkit/chaostoolkit-google-cloud/compare/0.2.1...0.2.2
+[0.2.2]: https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud/compare/0.2.1...0.2.2
 
 ### Added
 
@@ -14,7 +14,7 @@
 
 ## [0.2.1][] - 2018-04-24
 
-[0.2.1]: https://github.com/chaostoolkit/chaostoolkit-google-cloud/tree/0.2.1
+[0.2.1]: https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud/compare/0.2.0...0.2.1
 
 ### Changed
 
@@ -22,7 +22,7 @@
 
 ## [0.2.0][] - 2018-04-23
 
-[0.2.0]: https://github.com/chaostoolkit/chaostoolkit-google-cloud/tree/0.2.0
+[0.2.0]: https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud/compare/0.1.0...0.2.0
 
 ### Added
 
@@ -38,7 +38,7 @@
 
 ## [0.1.0][] - 2018-04-13
 
-[0.1.0]: https://github.com/chaostoolkit/chaostoolkit-google-cloud/tree/0.1.0
+[0.1.0]: https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud/tree/0.1.0
 
 ### Added
 
