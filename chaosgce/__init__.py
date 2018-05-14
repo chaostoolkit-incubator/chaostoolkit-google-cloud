@@ -19,7 +19,7 @@ from chaosgce.types import GCEContext
 
 __all__ = ["__version__", "client", "discover", "get_context", "get_service",
            "wait_on_operation"]
-__version__ = '0.2.1'
+__version__ = '0.2.2'
 
 
 def get_service(service_name: str, version: str = 'v1',
