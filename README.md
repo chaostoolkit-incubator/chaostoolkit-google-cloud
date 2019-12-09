@@ -1,5 +1,7 @@
 # Chaos Toolkit Extension for Google Cloud Engine
 
+**THIS PACKAGE IS NOW DEPRECATED.** Please use the [google-cloud-platform][chaostoolkit-gcp] extension instead.
+
 [![Build Status](https://travis-ci.org/chaostoolkit-incubator/chaostoolkit-google-cloud.svg?branch=master)](https://travis-ci.org/chaostoolkit-incubator/chaostoolkit-google-cloud)
 [![Python versions](https://img.shields.io/pypi/pyversions/chaostoolkit-google-cloud.svg)](https://www.python.org/)
 
@@ -11,6 +13,7 @@ extension to the [Chaos Toolkit][chaostoolkit]. It targets the
 [probes]: http://chaostoolkit.org/reference/api/experiment/#probe
 [chaostoolkit]: http://chaostoolkit.org
 [gce]: https://cloud.google.com/compute/
+[chaostoolkit-gcp]: https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud-platform
 
 ## Install
 
