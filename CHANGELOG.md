@@ -1,8 +1,13 @@
 # Changelog
 
-## [Unreleased][]
+## [0.2.3][] - 2019-12-11
 
-[Unreleased]: https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud/compare/0.2.2...HEAD
+[0.2.3]: https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud/compare/0.2.2...0.2.3
+
+### Deprecated
+
+-   This extension is now deprecated. Please use the
+    chaostoolkit-google-cloud-platform extension instead.
 
 ## [0.2.2][] - 2018-05-14
 
